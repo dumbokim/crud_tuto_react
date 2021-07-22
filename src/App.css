@@ -18,9 +18,19 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 400px;
-  height: 250px;
+  height: 70px;
   border: black solid 1px;
   border-radius: 15px;
-  margin: 10px;
+}
+
+#movId {
+  flex: 1;
+}
+
+#movName {
+  flex: 7;
 }

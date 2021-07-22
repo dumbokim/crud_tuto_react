@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Axios from 'axios';
+import MovieListCard from './components/MovieListCard';
 
 
 function App() {
@@ -12,13 +13,15 @@ function App() {
   const [newReview, setNewReview] = useState('');
 
 
+  /*
   // get all table from db when the site opens or refreshes
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response) => {
       setMovieList(response.data);
     })
-  }, [])
-  
+  }, [movieList])
+  */
+
   // review submit function
   const submitReview = () => {
     if(movieName === '' || movieReview === '') return;
@@ -41,7 +44,7 @@ function App() {
   // update function
   const updateReview = (movie) => {
     Axios.put('http://localhost:3001/api/update', 
-    {
+    { 
       movieName: movie,
       movieReview: newReview,
     }
@@ -49,7 +52,7 @@ function App() {
     }
 
 
-  // return page!!
+  // return page!!!
   return (
 
     // page body
@@ -77,19 +80,10 @@ function App() {
 
         <h2>Movie list</h2>
         
-        {movieList.map((val) => {
-          return (
-            <div className='card'>
-              <h1>{val.movieName}</h1> 
-              <h2>{val.movieReview}</h2>
-              <button onClick={()=>{deleteReview(val.movieName)}}>Delete</button>
-              <input type='text' onChange={(e) => {
-                setNewReview(e.target.value);
-              }} />
-              <button onClick={()=> {updateReview(val.movieName)}}>Update</button>
-            </div>
-            );
-        })}
+        <MovieListCard>
+
+        </MovieListCard>
+
       </div>
 
       
